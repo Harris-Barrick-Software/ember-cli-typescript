@@ -78,6 +78,18 @@ module.exports = {
         return new MergeTrees([original, ts], { overwrite: true });
       },
     });
+	registry.add('js', {
+      name: 'ember-cli-typescript-tsx',
+      ext: 'tsx',
+      toTree: (original, inputPath, outputPath) => {
+        if (!this.compiler || inputPath !== '/') {
+          return original;
+        }
+
+        let ts = new Funnel(this.compiler.treeForHost(), { destDir: outputPath });
+        return new MergeTrees([original, ts], { overwrite: true });
+      },
+    });
   },
 
   treeForApp() {
