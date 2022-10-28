@@ -90,7 +90,7 @@ function buildWatchHooks(project, ts, callbacks) {
         debug(`%s: %s (for directory watch on %s)`, type, resolvedPath, dir);
         callback(resolvedPath);
 
-        if (resolvedPath.endsWith('.ts') && callbacks.watchedFileChanged) {
+        if ((resolvedPath.endsWith('.ts') || resolvedPath.endsWith('.tsx')) && callbacks.watchedFileChanged) {
           callbacks.watchedFileChanged();
         }
       });
